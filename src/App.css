@@ -22,6 +22,19 @@
   color: #61dafb;
 }
 
+input {
+  display: block;
+  width: 300px;
+}
+
+div {
+  color: red;
+}
+
+select {
+  width: 150px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

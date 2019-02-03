@@ -15,26 +15,18 @@ class App extends Component {
   }
 
   handleChange(event) {
-    if (event.target.id === "holderName") {
-      this.setState({holderName: event.target.value});
+    this.setState({[event.target.id]: event.target.value});
+    this.setState({holderNameError: ''});
+    if (!event.target.value) {
+      if (event.target.id === 'holderName') {
+        console.log('error');
+        this.setState({holderNameError: 'HolderName is required'});
+      }
     }
-    if (event.target.id === "cardNumber") {
-      this.setState({cardNumber: event.target.value});
-    }
-    if (event.target.id === "expirationMonth") {
-      this.setState({expirationMonth: event.target.value});
-    }
-    if (event.target.id === "expirationYear") {
-      this.setState({expirationYear: event.target.value});
-    }
-    if (event.target.id === "cvc") {
-      this.setState({cvc: event.target.value});
-    }
-    
   }
 
   handleSubmit(event) {
-    console.log('A form was submitted: ' + JSON.stringify(this.state));
+    alert('A form was submitted: ' + JSON.stringify(this.state));
     event.preventDefault();
   }
 
@@ -42,14 +34,15 @@ class App extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input id="holderName" placeholder="Holder name" type="text" value={this.state.holderName} onChange={this.handleChange} />
+        <div>{this.state.holderNameError}</div>
         <input id="cardNumber" placeholder="Card number" type="text" value={this.state.cardNumber} onChange={this.handleChange} />
         <select id="expirationMonth" value={this.state.expirationMonth} onChange={this.handleChange}>
-          <option value="" selected>Month</option>
+          <option value="">Month</option>
           <option value="1">1</option>
           <option value="2">2</option>
         </select>
         <select id="expirationYear" value={this.state.expirationMonth} onChange={this.handleChange}>
-          <option value="" selected>Year</option>
+          <option value="">Year</option>
           <option value="2019">2019</option>
           <option value="2020">2020</option>
         </select>
