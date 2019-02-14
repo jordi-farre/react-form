@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GhostInputComponent from './ghostInputComponent';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -15,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Formik
-      initialValues={{ holderName: '', cardNumber: '', expirationMonth: '', expirationYear: '', cvc: '' }}
+      initialValues={{ holderName: '', cardNumber: '', expirationMonth: '', expirationYear: '', cvc: '', hello: '' }}
       validationSchema={ValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -26,7 +27,7 @@ class App extends Component {
     >
       {({ isSubmitting }) => (
         <Form>
-          <Field name="holderName" placeholder="Holder Name" />
+          <GhostInputComponent name="holderName" placeholder="Holder Name" />
           <ErrorMessage name="holderName" component="div" />
           <Field name="cardNumber" placeholder="Card Number" />
           <ErrorMessage name="cardNumber" component="div" />
