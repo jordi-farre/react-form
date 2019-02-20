@@ -20,6 +20,9 @@
 </template>
 
 <script>
+
+import { required, minLength, between } from 'vuelidate/lib/validators';
+
 export default {
   data () {
     return { 
@@ -32,10 +35,18 @@ export default {
       }
     }
   },
+  validations: {
+    form: { 
+      cardNumber: {
+        required,
+      },
+    },
+  },
   methods: {
     submit() {
-      if (!this.form.cardNumber) {
-        alert('Card number is required');
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        alert('Form not valid');
         return;
       }
       alert(JSON.stringify(this.form));
